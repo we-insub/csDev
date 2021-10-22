@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <% response.sendRedirect("/home"); %>
+    <% response.sendRedirect("/"); %>
 </head>
 <body>
   

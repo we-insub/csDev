@@ -13,7 +13,7 @@
 <body>
 
 <%--<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">--%>
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -127,7 +127,7 @@
                 <a class="collapse-item" href="/radioselect/jswList">라디오셀렉트</a>
                 <a class="collapse-item" href="/signup/signupJsw">회원가입</a>
                 <a class="collapse-item" href="/signup/signupListJsw">회원목록</a>
-                
+
             </div>
         </div>
     </li>
@@ -168,9 +168,9 @@
                 <a class="collapse-item" href="/cafeMenuFormKej">과제01 등록</a>
                 <a class="collapse-item" href="/jsstudy/kej">Js Study</a>
                    <a class="collapse-item" href="/radioselect/kejList">라디오셀렉트</a>
-                   <a class="collapse-item" href="/signup/signupKej">회원가입(js 사용)</a>
-                   <a class="collapse-item" href="/signup/signupKej2List">회원가입2 리스트</a>
-                   <a class="collapse-item" href="/signup/signupKej2">회원가입2(vo로 넘겨 처리)</a>
+                   <a class="collapse-item" href="/signup/signupKej">회원가입</a>
+                   <a class="collapse-item" href="/signup/signupListKej">회원가입 리스트</a>
+               <!--     <a class="collapse-item" href="/signup/signupKej2">회원가입2(vo로 넘겨 처리)</a> -->
             </div>
         </div>
     </li>
@@ -196,8 +196,26 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLys"
+           aria-expanded="true" aria-controls="collapseLys">
+            <i class="fas fa-file-alt text-white"></i>
+            <span>이용선</span>
+        </a>
+        <div id="collapseLys" class="collapse" aria-labelledby="headingLys" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                 <a class="collapse-item" href="/signup/signupRjh">회원가입</a>
+                 <a class="collapse-item" href="/signup/signupListRjh">회원리스트</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
-<%--    <hr class="sidebar-divider d-none d-md-block">--%>
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 </ul>
 </body>
 </html>

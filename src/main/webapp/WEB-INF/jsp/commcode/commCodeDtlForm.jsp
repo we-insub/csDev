@@ -41,7 +41,16 @@
                 <form:form id="frm" name="frm" action="/commcode/commCodeDtlFormSave" method="post">
                     <div class="form-group">
                         <label for="dtlCd">마스터코드</label>
-                        <input type="text" class="form-control" id="mstCd" placeholder="mstCd" name="mstCd" value="${dtlVO.mstCd}" <c:if test="${dtlVO.mstCd ne null}"> readonly="readonly"</c:if>/>
+                   		<c:if test="${dtlVO.mstCd eq null}">
+	                   		<select name="mstCd" id="mstCd" class="form-control" >
+		                   		<c:forEach var="list" items="${selectCommCodeMstList}">
+		                   			<option value="${list.mstCd}">${list.mstNm }</option>
+		                   		</c:forEach>
+	                   		</select>
+                   		</c:if>
+                   		<c:if test="${dtlVO.mstCd ne null}">
+                     	  <input type="text" class="form-control" id="mstCd" placeholder="mstCd" name="mstCd" value="${dtlVO.mstCd}" <c:if test="${dtlVO.mstCd ne null}"> readonly="readonly"</c:if>/>
+                   		</c:if>
                     </div>
                     <div class="form-group">
                         <label for="dtlCd">디테일코드</label>
@@ -49,29 +58,29 @@
                     </div>
                     <div class="form-group">
                         <label for="dtlNm">디테일코드명</label>
-                       <%-- <input type="text" class="form-control" id="dtlNm" placeholder="dtlNm" name="dtlNm" value="${dtlVO.dtlNm}">--%>
-                        <select name = "dtlNm" id = "dtlNm" class="form-control">
+               	 	    <input type="text" class="form-control" id="dtlNm" placeholder="dtlNm" name="dtlNm" value="${dtlVO.dtlNm}">
+                      <%--   <select name = "dtlNm" id = "dtlNm" class="form-control">
                             <c:forEach var = "map" items="${mg}" >
                             <option value="${map.mstCd}">${map.dtlNm}</option>
                             </c:forEach>
-                        </select>
+                        </select> --%>
                     </div>
                     <div class="form-group">
                         <label for="useYn">사용유무</label>
-                        <%--<input type="text" class="form-control" id="useYn" placeholder="useYn" value="${dtlVO.useYn}">--%>
-                        <select class="form-control" name="useYn" id="useYn">
-                            <c:forEach var="map" items="${selectCommCodeDtlList}" varStatus="status">
-                              <option value="${map.dtlCd}">${map.dtlNm}</option>
+                        <select class="form-control" name="useYn"  id="useYn">
+                            <c:forEach var="uLists" items="${uList}" >
+                            	<option value="${uLists.dtlCd }"  <c:if test="${dtlVO.dtlCd eq uLists.dtlCd}"> selected="selected"</c:if>>${uLists.dtlNm}</option>
+                          
                             </c:forEach>
-                        </select>
+                         </select>
                     </div>
                     <div class="form-group">
                         <label for="useYn">코드그룹</label>
-                       <%--<input type="text" class="form-control" id="codeGrp" placeholder="codeGrp" name="codeGrp" value="${dtlVO.codeGrp}">--%>
-                        <select name = "ccc" class="form-control">
-                        <c:forEach var ="map" items="${bbb}">
+                       <input type="text" class="form-control" id="codeGrp" placeholder="codeGrp" name="codeGrp" value="${dtlVO.codeGrp}">
+                       <%-- <select name = "ccc" class="form-control">
+                         <c:forEach var ="map" items="${bbb}">
                             <option value="${map.dtlCd}">${map.dtlNm}</option>
-                        </c:forEach>
+                        </c:forEach> --%>
                         </select>
                     </div>
                     <div class="form-group">

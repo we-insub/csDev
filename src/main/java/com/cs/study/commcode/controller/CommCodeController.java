@@ -63,10 +63,13 @@ public class CommCodeController {
     }
 
     @GetMapping("/commcode/commCodeDtlForm")
-    public String commCodeDtlForm(Model model, CommCodeDtlVO commCodeDtlVO){
+    public String commCodeDtlForm(Model model, CommCodeDtlVO commCodeDtlVO, CommCodeMstVO commCodeMstVO){
         System.out.println("시작하니??????");
         if (!StringUtils.isEmpty( commCodeDtlVO.getDtlCd() )){
             CommCodeDtlVO selectCommCodeDtl = commCodeService.selectCommCodeDtlOne(commCodeDtlVO);
+            System.out.println("==================");
+            System.out.println("dtlVO:"+selectCommCodeDtl);
+            System.out.println("==================");
             model.addAttribute("dtlVO", selectCommCodeDtl);
         }
         //사용유무 컬럼 값이 m002인거 가져오기
@@ -84,18 +87,21 @@ public class CommCodeController {
         List<CommCodeDtlVO> bbb = commCodeService.selectCommCodeDtlList(aaa);
         model.addAttribute("bbb",bbb);
 
+        CommCodeDtlVO ooo = new CommCodeDtlVO();
+        ooo.setMstCd("m004");
+        List<CommCodeDtlVO> kkk = commCodeService.selectCommCodeDtlList(ooo);
+        model.addAttribute("mg",kkk);
+//-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        
+        // 마스터 코드 값 가져오기!
+        List<CommCodeMstVO> selectCommCodeMstList = commCodeService.selectCommCodeMstList(commCodeMstVO);
+        model.addAttribute("selectCommCodeMstList", selectCommCodeMstList);
 
-
-
-                CommCodeDtlVO ooo = new CommCodeDtlVO();
-            ooo.setMstCd("m004");
-            List<CommCodeDtlVO> kkk = commCodeService.selectCommCodeDtlList(ooo);
-            model.addAttribute("mg",kkk);
-
-
-
-
-
+        // 사용 유무값 가져오기
+        CommCodeDtlVO uVo = new CommCodeDtlVO();
+        uVo.setMstCd("M0005");
+        List<CommCodeDtlVO> uList = commCodeService.selectCommCodeDtlList(uVo);
+        model.addAttribute("uList",uList);
 
         return "commcode/commCodeDtlForm";
     }
