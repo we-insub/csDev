@@ -64,6 +64,7 @@
                 <a class="collapse-item" href="/commcode/commCodeMstForm">공통코드 마스터 등록</a>
                 <a class="collapse-item" href="/commcode/commCodeDtlList">공통코드 디테일</a>
                 <a class="collapse-item" href="/commcode/commCodeDtlForm">공통코드 디테일 등록</a>
+                <a class="collapse-item" href="/syncTestList">테스트</a>
             </div>
         </div>
     </li>
@@ -85,6 +86,7 @@
                 <a class="collapse-item" href="/jsstudy/kyj">Js Study</a>
                 <a class="collapse-item" href="/radioselect/kyjList">라디오셀렉트</a>
                 <a class="collapse-item" href="/signup/signupKyj">회원가입</a>
+                <a class="collapse-item" href="/signup/signupListkyj">회원리스트</a>
             </div>
         </div>
     </li>
@@ -147,8 +149,8 @@
                 <a class="collapse-item" href="/syncSampleFormLmg2">과제01 등록</a>
                 <a class="collapse-item" href="/jsstudy/lmg">Js Study</a>
                 <a class="collapse-item" href="/radioselect/lmgList">라디오셀렉트</a>
-                <a class="collapse-item" href="/signupLmg">회원가입</a>
-                <a class="collapse-item" href="/signupListLmg">회원리스트</a>
+                <a class="collapse-item" href="/signup/signupLmg">회원가입</a>
+                <a class="collapse-item" href="/signup/signupListLmg">회원리스트</a>
             </div>
         </div>
     </li>

@@ -29,6 +29,7 @@ public class SignupServiceWis {
             return 0;
         }
 
+        // *********************String 비교는 == 말고 다른 방법으로 하세용
         if(signupVOWis.getGender() == "M"){
             signupVOWis.setGender("M");
         }
@@ -52,6 +53,7 @@ public class SignupServiceWis {
         boolean pon2 = isNumeric(pN2);
         boolean pon3 = isNumeric(pN3);
 
+        // *********************if안에 아무 코딩이 없으면 굳이 if else를 나눈필요가 없습니당
         if(pN2.length() ==4 || pN3.length() ==4){
         } else {
             return 0;
