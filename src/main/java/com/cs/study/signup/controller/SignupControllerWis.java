@@ -89,9 +89,29 @@ public class SignupControllerWis {
     public String signupListwis(Model model, SignupVOWis signupVOWis){
 
         List<SignupVOWis> signupListwis = signupServiceWis.signupListwis(signupVOWis);
+//        List<SignupVOWis> signupListwis2 = signupServiceWis.signupListwis2(signupVOWis);
         model.addAttribute("signupListwis", signupListwis);
+//        model.addAttribute("signupListwis2", signupListwis2);
         model.addAttribute("signupVOWis", signupVOWis);
+
+        CommCodeDtlVO commCodeDtlVO = new CommCodeDtlVO();
+        commCodeDtlVO.setMstCd("M0002");
+        List<CommCodeDtlVO> signupPwAnswer = commCodeService.selectCommCodeDtlList(commCodeDtlVO);
+        model.addAttribute("signupPwAnswer", signupPwAnswer);
+
+        commCodeDtlVO = new CommCodeDtlVO();
+        commCodeDtlVO.setMstCd("M0003");;
+        List<CommCodeDtlVO> signupGender = commCodeService.selectCommCodeDtlList(commCodeDtlVO);
+        model.addAttribute("signupGender", signupGender);
+
+        commCodeDtlVO  = new CommCodeDtlVO();
+        commCodeDtlVO.setMstCd("M0001");
+        List<CommCodeDtlVO> signupPhone = commCodeService.selectCommCodeDtlList(commCodeDtlVO);
+        model.addAttribute("signupPhone", signupPhone);
+
 
         return "signup/signupListWis";
     }
+
+
 }

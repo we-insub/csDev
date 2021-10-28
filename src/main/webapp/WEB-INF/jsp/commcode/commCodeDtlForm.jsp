@@ -69,8 +69,8 @@
                         <label for="useYn">사용유무</label>
                         <select class="form-control" name="useYn"  id="useYn">
                             <c:forEach var="uLists" items="${uList}" >
-                            	<option value="${uLists.dtlCd }"  <c:if test="${dtlVO.dtlCd eq uLists.dtlCd}"> selected="selected"</c:if>>${uLists.dtlNm}</option>
-                          
+                            	<option value="${uLists.dtlCd }"  <c:if test="${dtlVO.useYn eq uLists.dtlCd}"> selected="selected"</c:if>>${uLists.dtlNm}
+                            	</option>
                             </c:forEach>
                          </select>
                     </div>

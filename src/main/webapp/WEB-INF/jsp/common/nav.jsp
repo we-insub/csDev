@@ -60,6 +60,7 @@
                 <a class="collapse-item" href="/radioselect/deptList">Dept List</a>
                 <a class="collapse-item" href="/radioselect/kcsList">라디오셀렉트</a>
                 <a class="collapse-item" href="/signup/signupKcs">회원가입</a>
+                <a class="collapse-item" href="/signup/signupListKcs">회원가입 리스트</a>
                 <a class="collapse-item" href="/commcode/commCodeMstList">공통코드 마스터</a>
                 <a class="collapse-item" href="/commcode/commCodeMstForm">공통코드 마스터 등록</a>
                 <a class="collapse-item" href="/commcode/commCodeDtlList">공통코드 디테일</a>
@@ -107,6 +108,7 @@
                 <a class="collapse-item" href="/jsstudy/wis">Js Study</a>
                 <a class="collapse-item" href="/radioselect/wisList">라디오셀렉트</a>
                 <a class="collapse-item" href="/signup/signupWis">회원가입</a>
+                <a class="collapse-item" href="/signup/signupListWis">회원가입리스트</a>
             </div>
         </div>
     </li>

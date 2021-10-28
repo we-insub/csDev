@@ -1,3 +1,5 @@
+<!--인섭 코드-->
+
 <%--
   Created by IntelliJ IDEA.
   User: kimchangsu
@@ -70,31 +72,65 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">회원번호</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">닉네임</th>
-                            <th scope="col">전화번호</th>
-                            <th scope="col">성별[M/W]</th>
-                            <th scope="col">주소1</th>
-                            <th scope="col">주소22</th>
-                            <th scope="col">약관동의1</th>
-                            <th scope="col">약관동의2</th>
-                            <th scope="col">약관동의3</th>
+                            <th style="width: 2%;"><input name="checkall" id="checkall" type="checkbox"  /></th>
+                            <th scope="col" style="width: 1%;">#</th>
+                            <th scope="col" style="width: 10%;">ID</th>
+                            <th scope="col" style="width: 10%;">비밀번호</th>
+                            <th scope="col" style="width: 10%;">비밀번호 질문</th>
+                            <th scope="col" style="width: 10%;">비밀번호 답변</th>
+                            <th scope="col" style="width: 5%;">닉네임</th>
+                            <th scope="col" style="width: 13%;">연락처</th>
+                            <th scope="col" style="width: 10%;">성별</th>
+                            <th scope="col" style="width: 10%;">주소1</th>
+                            <th scope="col" style="width: 10%;">주소2</th>
+                            <th scope="col" style="width: 5%;">개인정보 동의</th>
+                            <th scope="col" style="width: 5%;">구매약관 동의</th>
+                            <th scope="col" style="width: 5%;">판매약관 동의</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="list" items="${signupListwis}" varStatus="status">
                             <tr>
+                                <td><input type="checkbox" class="list-check" name="check" id="check"  /></td>
                                 <td scope="row"><c:out value="${status.count}" /></td>
-                                <td>${list.userId}</td>
-                                <td>${list.nickname}</td>
-                                <td>${list.phoneNumber}</td>
-                                <td>${list.gender}</td>
-                                <td>${list.address1}</td>
-                                <td>${list.address2}</td>
-                                <td>${list.termsInfoYn}</td>
-                                <td>${list.termsBuyYn}</td>
-                                <td>${list.termsSellYn}</td>
+                                <td><input type="text" class="form-control" name="userId" value="${list.userId}"/></td>
+                                <td><input type="text" class="form-control" name="userPw" value="${list.userPw}"/></td>
+                                <td>
+                                    <select class="form-control" name="pwQuestion">
+                                        <c:forEach var="map" items="${signupPwAnswer}" varStatus="status">
+                                            <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control" name="pwAnswer" value="${list.pwAnswer}"/></td>
+                                <td><input type="text" class="form-control" name="nickname" value="${list.nickname}"/></td>
+                                <td>
+                                    <select class="form-control" name="phoneNumber1">
+                                        <c:forEach var="map" items="${signupPhone}" varStatus="status">
+                                            <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <input type="text" value="${list.phoneNumber2}" />
+                                    <input type="text" value="${list.phoneNumber3}" />
+                                </td>
+                                <td>
+                                    <c:forEach var="map" items="${signupGender}" varStatus="status">
+                                        <input type="radio" id="gender" name="gender${list.seq }"
+                                            <c:if test="${list.gender eq map.dtlCd}">checked="checked"></c:if>
+                                        <label for="gender"${status.count} >${map.dtlNm }</label>
+                                    </c:forEach>
+                                </td>
+                                <td><input type="text" class="form-control" name="address1" value="${list.address1}"/></td>
+                                <td><input type="text" class="form-control" name="address2" value="${list.address2}"/></td>
+                                <td>
+                                    <input type="checkbox" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -114,3 +150,41 @@
 
 </body>
 </html>
+<script>
+
+    // 아래코드는 체크올이 체크되었을때 아래체크박스가 모두 체크되게 하기 혹은 체크해제
+    $(document).ready(function(){
+        $("#checkall").change(function(){
+            if($("#checkall").is(":checked",true)){
+                $("input:checkbox[name='check']").prop("checked", true);
+            }
+            else{
+                $("input:checkbox[name='check']").prop("checked", false);
+            }
+        });
+    });
+
+    // 아레코드는 체크박스 클래스를 불러와서 변수 a에 담고, 체크박스 모두 뽑아서 체크가 모두 되면 체크올 체크 혹은 해제
+    $("input[type='checkbox'].list-check").change(function(){
+        var a = $("input[type='checkbox'].list-check");
+        if(a.length == a.filter(":checked").length){
+            $("input:checkbox[name='checkall']").prop("checked", true);
+        }
+        else{
+            $("input:checkbox[name='checkall']").prop("checked", false);
+        }
+    });
+
+    // //상위 체크박스 (체크올) 을 클릭할시에 로우에있는 체크박스들 체크되게 하기
+    // $('#checkall').click(function () {
+    //     if ($("input:checkbox[name='checkall']").prop("checked")) {
+    //         $("input:checkbox[name='check']").prop("checked", true);
+    //     } else {
+    //         $("input:checkbox[name='check']").prop("checked", false);
+    //     }
+    // });
+
+
+</script>
+
+

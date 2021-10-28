@@ -102,6 +102,9 @@ public class CommCodeController {
         uVo.setMstCd("M0005");
         List<CommCodeDtlVO> uList = commCodeService.selectCommCodeDtlList(uVo);
         model.addAttribute("uList",uList);
+        System.out.println("----------------");
+        System.out.println("uList"+uList);
+        System.out.println("----------------");
 
         return "commcode/commCodeDtlForm";
     }

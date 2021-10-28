@@ -33,7 +33,12 @@
 		)
 	</insert>
 		<select id="signupListwis" resultType="signupVOwis" parameterType="signupVOwis">
-			SELECT user_id,
+			SELECT
+			user_id,
+			seq,
+			user_pw,
+			pw_question,
+			pw_answer,
 			nickname,
 			phone_number,
 			gender,
