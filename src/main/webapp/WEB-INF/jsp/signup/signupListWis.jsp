@@ -65,9 +65,11 @@
                         </div>
                         <div class="col-auto">
                             <button name="action" class="btn btn-info" type="submit">조회</button>
+                            <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
                         </div>
                     </div>
                     </form:form>
+                    <form:form id="updatelist" action="/signup/listUpdate" method="post">
                     <br /><br />
                     <table class="table table-striped">
                         <thead>
@@ -93,50 +95,52 @@
                             <tr>
                                 <td><input type="checkbox" class="list-check" name="check" id="check"  /></td>
                                 <td scope="row"><c:out value="${status.count}" /></td>
-                                <td><input type="text" class="form-control" name="userId" value="${list.userId}"/></td>
-                                <td><input type="text" class="form-control" name="userPw" value="${list.userPw}"/></td>
                                 <td>
-                                    <select class="form-control" name="pwQuestion">
-                                        <c:forEach var="map" items="${signupPwAnswer}" varStatus="status">
+                                    <input type="hidden" name=ListSignupVOWis[${status.index}].seq" value="${list.seq}">
+                                    <input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userId" value="${list.userId}"/></td>
+                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userPw" value="${list.userPw}"/></td>
+                                <td>
+                                    <select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion">
+                                        <c:forEach var="map" items="${signupPwAnswer}" varStatus="status2">
                                             <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option>
                                         </c:forEach>
                                     </select>
                                 </td>
-                                <td><input type="text" class="form-control" name="pwAnswer" value="${list.pwAnswer}"/></td>
-                                <td><input type="text" class="form-control" name="nickname" value="${list.nickname}"/></td>
+                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].pwAnswer" value="${list.pwAnswer}"/></td>
+                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].nickname" value="${list.nickname}"/></td>
                                 <td>
-                                    <select class="form-control" name="phoneNumber1">
-                                        <c:forEach var="map" items="${signupPhone}" varStatus="status">
+                                    <select class="form-control" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber1">
+                                        <c:forEach var="map" items="${signupPhone}" varStatus="status2">
                                             <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option>
                                         </c:forEach>
                                     </select>
-                                    <input type="text" value="${list.phoneNumber2}" />
-                                    <input type="text" value="${list.phoneNumber3}" />
+                                    <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" />
+                                    <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" />
                                 </td>
                                 <td>
-                                    <c:forEach var="map" items="${signupGender}" varStatus="status">
-                                        <input type="radio" id="gender" name="gender${list.seq }"
-                                            <c:if test="${list.gender eq map.dtlCd}">checked="checked"></c:if>
-                                        <label for="gender"${status.count} >${map.dtlNm }</label>
+                                    <c:forEach var="map" items="${signupGender}" varStatus="status3">
+                                        <input type="radio" id="gender${status.count}" name="ListSignupVOWis[${status.index}].gender${list.seq }"
+                                            <c:if test="${list.gender eq map.dtlCd}">checked="checked"</c:if>>
+                                        <label for="gender${status.count}" >${map.dtlNm }</label>
                                     </c:forEach>
                                 </td>
-                                <td><input type="text" class="form-control" name="address1" value="${list.address1}"/></td>
-                                <td><input type="text" class="form-control" name="address2" value="${list.address2}"/></td>
+                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address1" value="${list.address1}"/></td>
+                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address2" value="${list.address2}"/></td>
                                 <td>
-                                    <input type="checkbox" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>>
                                 </td>
                                 <td>
-                                    <input type="checkbox" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>>
                                 </td>
                                 <td>
-                                    <input type="checkbox" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if> ><c:out value="${status.count}" />
+                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>>
                                 </td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                     <!-- 요기가 컨텐츠 끝 -->
-
+                    </form:form>
                 </div>
             </div>
             <!-- Footer -->
@@ -154,6 +158,18 @@
 
     // 아래코드는 체크올이 체크되었을때 아래체크박스가 모두 체크되게 하기 혹은 체크해제
     $(document).ready(function(){
+
+
+            // 수정 버튼 눌렀을 떄
+            $('#btnSave').click(function(){
+                //alert("안녕");
+                $('#updatelist').submit();
+            });
+        // $('#btnSave').click(function (){
+        //     $('#updatelist').submit;
+        //     // alert("test");
+        // });
+
         $("#checkall").change(function(){
             if($("#checkall").is(":checked",true)){
                 $("input:checkbox[name='check']").prop("checked", true);
@@ -163,6 +179,19 @@
             }
         });
     });
+
+
+    // function saveSample(){
+    //     $('#action').val('save');
+    //     // $('#btnDelete').hide();
+    //     fn_callAjax('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_saveSample);
+    // }
+    //
+    // function cb_saveSample( rstData ){
+    //     selectSampleList();
+    //     fn_formReset('frmSave');
+    //     alert('저장완료');
+    // }
 
     // 아레코드는 체크박스 클래스를 불러와서 변수 a에 담고, 체크박스 모두 뽑아서 체크가 모두 되면 체크올 체크 혹은 해제
     $("input[type='checkbox'].list-check").change(function(){

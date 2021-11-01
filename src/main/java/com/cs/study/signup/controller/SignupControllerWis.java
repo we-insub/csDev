@@ -1,5 +1,6 @@
 package com.cs.study.signup.controller;
 
+import com.cs.study.sample.vo.VisitVO;
 import com.cs.study.signup.service.SignupServiceWis;
 import com.cs.study.signup.vo.SignupVOWis;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cs.study.commcode.service.CommCodeService;
 import com.cs.study.commcode.vo.CommCodeDtlVO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -113,5 +115,45 @@ public class SignupControllerWis {
         return "signup/signupListWis";
     }
 
+//     아래꺼 수정 편안하게 하기위해서 원본임
+//    @PostMapping("/signup/listUpdate")
+//    public String listUpdate(SignupVOWis signupVOWis) {
+//        List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
+//
+//        System.out.println("오늘저녁은 초밥이당 ");
+//        for (int i = 0; i < updateList.size(); i++) {
+//            SignupVOWis vo = updateList.get(i);
+//            System.out.println("*********************");
+//            System.out.println( vo );
+//            System.out.println("*********************");
+//        }
+//        return "redirect:/signup/signupListWis";
+//    }
+
+    @PostMapping("/signup/listUpdate")
+    public String listUpdate(Model model,SignupVOWis signupVOWis) {
+        List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
+
+        System.out.println("for 문 돌기전에 확인");
+        for (int i = 0; i < updateList.size(); i++) {
+
+            SignupVOWis vo = updateList.get(i);
+            System.out.println("*********************");
+            System.out.println( vo );
+            System.out.println("*********************");
+            signupServiceWis.ListUpdate(vo);
+        }
+        return "redirect:/signup/signupListWis";
+    }
+
+//    @PostMapping("/01visitlistsaveadd")
+//    public String syncSampleFormSave(Model model, SignupVOWis signupVOWis, @RequestParam(value="btnSave", required=true) String btnSave){
+//        List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
+//        List<SignupVOWis> ListUpdate = signupVOWis.getListSignupVOWis();
+//        if ( "save".equals(btnSave) ){
+//            int saveCnt = SignupServiceWis.ListUpdate(signupVOWis);
+//        }
+//        return "redirect:/signup/signupListWis";
+//    }
 
 }

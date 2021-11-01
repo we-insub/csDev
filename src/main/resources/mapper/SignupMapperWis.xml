@@ -56,4 +56,38 @@
 			ORDER BY seq DESC
 		</select>
 
+	<update id="ListUpdate" parameterType="signupVOwis">
+		UPDATE tb_user
+		set
+		    user_id = #{userId},
+			user_pw = #{userPw},
+			pw_question = #{pwQuestion},
+			pw_answer = #{pwAnswer},
+			nickname = #{nickname},
+			phone_number = #{phoneNumber},
+			gender = #{gender},
+			address1 = #{address1},
+			address2 = #{address2},
+			terms_info_yn = #{termsInfoYn},
+			terms_buy_yn = #{termsBuyYn},
+			terms_sell_yn = #{termsSellYn}
+		where seq = #{seq}
+	</update>
+
+<!--	<update id="saveVisit" parameterType="VisitVO">-->
+<!--		WITH UPSERT AS (-->
+<!--		UPDATE kcs.visit_wis-->
+<!--		SET Country  = #{Country}-->
+<!--		  , city = #{city}-->
+<!--		WHERE Country = #{Country} RETURNING *-->
+<!--)-->
+<!--		INSERT-->
+<!--		INTO kcs.visit_wis ( Country-->
+<!--						   , city-->
+<!--						   , vdate1)-->
+<!--		SELECT #{Country}-->
+<!--			 , #{city}-->
+<!--			 , #{vdate1} WHERE NOT EXISTS ( SELECT * FROM UPSERT )-->
+<!--	</update>-->
+
 </mapper>

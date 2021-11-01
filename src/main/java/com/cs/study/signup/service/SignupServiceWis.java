@@ -1,10 +1,8 @@
 package com.cs.study.signup.service;
 
-import com.cs.study.commcode.vo.CommCodeDtlVO;
+import com.cs.study.sample.vo.VisitVO;
 import com.cs.study.signup.mapper.SignupMapperWis;
-import com.cs.study.signup.vo.SignupVO;
 import com.cs.study.signup.vo.SignupVOWis;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +14,10 @@ public class SignupServiceWis {
 
     public SignupServiceWis(SignupMapperWis signupMapperWis) {
         this.signupMapperWis = signupMapperWis;
+    }
+
+    public int ListUpdate(SignupVOWis signupVOWis) {
+        return signupMapperWis.ListUpdate(signupVOWis);
     }
 
     public boolean isNumeric(String str) {

@@ -67,9 +67,9 @@ public class CommCodeController {
         System.out.println("시작하니??????");
         if (!StringUtils.isEmpty( commCodeDtlVO.getDtlCd() )){
             CommCodeDtlVO selectCommCodeDtl = commCodeService.selectCommCodeDtlOne(commCodeDtlVO);
-            System.out.println("==================");
-            System.out.println("dtlVO:"+selectCommCodeDtl);
-            System.out.println("==================");
+//            System.out.println("==================");
+//            System.out.println("dtlVO:"+selectCommCodeDtl);
+//            System.out.println("==================");
             model.addAttribute("dtlVO", selectCommCodeDtl);
         }
         //사용유무 컬럼 값이 m002인거 가져오기
@@ -77,9 +77,9 @@ public class CommCodeController {
         ccvo.setMstCd("m002");
         List<CommCodeDtlVO> selectCommCodeDtlList = commCodeService.selectCommCodeDtlList(ccvo);
         model.addAttribute("selectCommCodeDtlList",selectCommCodeDtlList);
-        System.out.println("--------------");
-        System.out.println("selectCommCodeDtlList"+selectCommCodeDtlList);
-        System.out.println("--------------");
+//        System.out.println("--------------");
+//        System.out.println("selectCommCodeDtlList"+selectCommCodeDtlList);
+//        System.out.println("--------------");
 //--------------------------------------------------------------------
         //전화번호 셀렉트박스 MOO3
         CommCodeDtlVO aaa = new CommCodeDtlVO();
@@ -102,9 +102,9 @@ public class CommCodeController {
         uVo.setMstCd("M0005");
         List<CommCodeDtlVO> uList = commCodeService.selectCommCodeDtlList(uVo);
         model.addAttribute("uList",uList);
-        System.out.println("----------------");
-        System.out.println("uList"+uList);
-        System.out.println("----------------");
+//        System.out.println("----------------");
+//        System.out.println("uList"+uList);
+//        System.out.println("----------------");
 
         return "commcode/commCodeDtlForm";
     }

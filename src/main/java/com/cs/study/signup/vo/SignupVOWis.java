@@ -3,6 +3,8 @@ package com.cs.study.signup.vo;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+import java.util.List;
+
 
 @Data
 @Alias("signupVOWis")
@@ -24,4 +26,5 @@ public class SignupVOWis {
     private String termsInfoYn;
     private String termsBuyYn;
     private String termsSellYn;
+    private List<SignupVOWis> ListSignupVOWis;
 }
