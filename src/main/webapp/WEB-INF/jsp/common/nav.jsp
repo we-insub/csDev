@@ -200,7 +200,7 @@
         </div>
     </li>
 
-    <li class="nav-item">
+	<li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLys"
            aria-expanded="true" aria-controls="collapseLys">
             <i class="fas fa-file-alt text-white"></i>
@@ -208,12 +208,18 @@
         </a>
         <div id="collapseLys" class="collapse" aria-labelledby="headingLys" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                 <a class="collapse-item" href="/signup/signupRjh">회원가입</a>
-                 <a class="collapse-item" href="/signup/signupListRjh">회원리스트</a>
+                <!-- <a class="collapse-item" href="/syncSampleListLys">Sample리스트</a>
+                <a class="collapse-item" href="/syncSampleFormLys">Sample등록</a>
+                <a class="collapse-item" href="/syncSampleListLys">과제01 리스트</a>
+                <a class="collapse-item" href="/syncSampleFormLys">과제01 등록</a>
+                <a class="collapse-item" href="/jsstudy/lys">Js Study</a>
+                <a class="collapse-item" href="/radioselect/lysList">라디오셀렉트</a> -->
+                <a class="collapse-item" href="/signup/signupLys">회원가입</a>
+                <a class="collapse-item" href="/signup/signupListLys">등록 회원 리스트</a>
+                <!-- <a class="collapse-item" href="/signup/signupListLys">회원리스트</a> -->
             </div>
         </div>
     </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

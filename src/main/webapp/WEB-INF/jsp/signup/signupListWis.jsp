@@ -70,76 +70,81 @@
                     </div>
                     </form:form>
                     <form:form id="updatelist" action="/signup/listUpdate" method="post">
-                    <br /><br />
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th style="width: 2%;"><input name="checkall" id="checkall" type="checkbox"  /></th>
-                            <th scope="col" style="width: 1%;">#</th>
-                            <th scope="col" style="width: 10%;">ID</th>
-                            <th scope="col" style="width: 10%;">비밀번호</th>
-                            <th scope="col" style="width: 10%;">비밀번호 질문</th>
-                            <th scope="col" style="width: 10%;">비밀번호 답변</th>
-                            <th scope="col" style="width: 5%;">닉네임</th>
-                            <th scope="col" style="width: 13%;">연락처</th>
-                            <th scope="col" style="width: 10%;">성별</th>
-                            <th scope="col" style="width: 10%;">주소1</th>
-                            <th scope="col" style="width: 10%;">주소2</th>
-                            <th scope="col" style="width: 5%;">개인정보 동의</th>
-                            <th scope="col" style="width: 5%;">구매약관 동의</th>
-                            <th scope="col" style="width: 5%;">판매약관 동의</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="list" items="${signupListwis}" varStatus="status">
+                        <br /><br />
+                        <table class="table table-striped">
+                            <thead>
                             <tr>
-                                <td><input type="checkbox" class="list-check" name="check" id="check"  /></td>
-                                <td scope="row"><c:out value="${status.count}" /></td>
-                                <td>
-                                    <input type="hidden" name=ListSignupVOWis[${status.index}].seq" value="${list.seq}">
-                                    <input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userId" value="${list.userId}"/></td>
-                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userPw" value="${list.userPw}"/></td>
-                                <td>
-                                    <select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion">
-                                        <c:forEach var="map" items="${signupPwAnswer}" varStatus="status2">
-                                            <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option>
-                                        </c:forEach>
-                                    </select>
-                                </td>
-                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].pwAnswer" value="${list.pwAnswer}"/></td>
-                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].nickname" value="${list.nickname}"/></td>
-                                <td>
-                                    <select class="form-control" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber1">
-                                        <c:forEach var="map" items="${signupPhone}" varStatus="status2">
-                                            <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" />
-                                    <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" />
-                                </td>
-                                <td>
-                                    <c:forEach var="map" items="${signupGender}" varStatus="status3">
-                                        <input type="radio" id="gender${status.count}" name="ListSignupVOWis[${status.index}].gender${list.seq }"
-                                            <c:if test="${list.gender eq map.dtlCd}">checked="checked"</c:if>>
-                                        <label for="gender${status.count}" >${map.dtlNm }</label>
-                                    </c:forEach>
-                                </td>
-                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address1" value="${list.address1}"/></td>
-                                <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address2" value="${list.address2}"/></td>
-                                <td>
-                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>>
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>>
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="ListSignupVOWis[${status.index}].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>>
-                                </td>
+                                <th style="width: 2%;"><input name="checkall" id="checkall" type="checkbox"  /></th>
+                                <th scope="col" style="width: 1%;">#</th>
+                                <th scope="col" style="width: 10%;">ID</th>
+                                <th scope="col" style="width: 10%;">비밀번호</th>
+                                <th scope="col" style="width: 10%;">비밀번호 질문</th>
+                                <th scope="col" style="width: 10%;">비밀번호 답변</th>
+                                <th scope="col" style="width: 5%;">닉네임</th>
+                                <th scope="col" style="width: 13%;">연락처</th>
+                                <th scope="col" style="width: 10%;">성별</th>
+                                <th scope="col" style="width: 10%;">주소1</th>
+                                <th scope="col" style="width: 10%;">주소2</th>
+                                <th scope="col" style="width: 5%;">개인정보 동의</th>
+                                <th scope="col" style="width: 5%;">구매약관 동의</th>
+                                <th scope="col" style="width: 5%;">판매약관 동의</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                    <!-- 요기가 컨텐츠 끝 -->
+                            </thead>
+                            <tbody>
+                            <c:forEach var="list" items="${signupListwis}" varStatus="status">
+                                <tr>
+                                    <td><input type="checkbox" class="list-check" name="check" id="check"  /></td>
+                                    <td scope="row"><c:out value="${status.count}" /></td>
+                                    <td>
+                                        <input type="hidden" name="ListSignupVOWis[${status.index}].seq" value="${list.seq}"/>
+                                        <input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userId" value="${list.userId}"/></td>
+                                    <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userPw" value="${list.userPw}"/></td>
+                                    <td>
+                                        <select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion">
+                                            <c:forEach var="map" items="${signupPwAnswer}" varStatus="status2">
+                                                <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].pwAnswer" value="${list.pwAnswer}"/></td>
+                                    <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].nickname" value="${list.nickname}"/></td>
+                                    <td>
+                                        <select class="form-control" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber1">
+                                            <c:forEach var="map" items="${signupPhone}" varStatus="status2">
+                                                <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option>
+                                            </c:forEach>
+                                        </select>
+                                        <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" />
+                                        <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" />
+                                    </td>
+                                    <td>
+<%--                                        <c:forEach var="map" items="${signupGender}" varStatus="status3">--%>
+<%--                                            <input type="radio" id="gender${status.count}" value="${list.gender}" name="ListSignupVOWis[${status.index}].gender${list.seq }"--%>
+<%--                                                   <c:if test="${list.gender eq map.dtlCd}">checked="checked"</c:if>>--%>
+<%--                                            <label for="gender${status.count}" >${map.dtlNm }</label>--%>
+<%--                                        </c:forEach>--%>
+
+                                        <c:forEach var="gd"  items="${signupGender}"  varStatus="status3">
+                                            <input  type="radio" id="gender${status3.index }" name="ListSignupVOWis[${status.index}].gender<%-- ${status.index } --%>" value="${gd.dtlCd }" <c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> >
+                                            <label for="gender${status3.index }" >${gd.dtlNm }</label>
+                                        </c:forEach>
+                                    </td>
+                                    <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address1" value="${list.address1}"/></td>
+                                    <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address2" value="${list.address2}"/></td>
+                                    <td>
+                                        <input type="checkbox" name="ListSignupVOWis[${status.index}].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="ListSignupVOWis[${status.index}].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="ListSignupVOWis[${status.index}].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <!-- 요기가 컨텐츠 끝 -->
                     </form:form>
                 </div>
             </div>
@@ -160,11 +165,11 @@
     $(document).ready(function(){
 
 
-            // 수정 버튼 눌렀을 떄
-            $('#btnSave').click(function(){
-                //alert("안녕");
-                $('#updatelist').submit();
-            });
+        // 수정 버튼 눌렀을 떄
+        $('#btnSave').click(function(){
+            //alert("안녕");
+            $('#updatelist').submit();
+        });
         // $('#btnSave').click(function (){
         //     $('#updatelist').submit;
         //     // alert("test");

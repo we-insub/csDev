@@ -134,6 +134,7 @@ public class SignupControllerWis {
     public String listUpdate(Model model,SignupVOWis signupVOWis) {
         List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
 
+
         System.out.println("for 문 돌기전에 확인");
         for (int i = 0; i < updateList.size(); i++) {
 
@@ -141,7 +142,7 @@ public class SignupControllerWis {
             System.out.println("*********************");
             System.out.println( vo );
             System.out.println("*********************");
-            signupServiceWis.ListUpdate(vo);
+            signupServiceWis.ListUpdate(updateList.get(i));
         }
         return "redirect:/signup/signupListWis";
     }

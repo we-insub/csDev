@@ -17,6 +17,20 @@ public class SignupServiceWis {
     }
 
     public int ListUpdate(SignupVOWis signupVOWis) {
+
+        signupVOWis.setPhoneNumber(signupVOWis.getPhoneNumber1() +"-"+ signupVOWis.getPhoneNumber2() +"-"+ signupVOWis.getPhoneNumber3());
+
+        if (signupVOWis.getTermsBuyYn() == null) {
+            signupVOWis.setTermsBuyYn("N");
+        }
+        if (signupVOWis.getTermsInfoYn() == null) {
+            signupVOWis.setTermsInfoYn("N");
+        }
+        if (signupVOWis.getTermsSellYn() == null) {
+            signupVOWis.setTermsSellYn("N");
+        }
+
+
         return signupMapperWis.ListUpdate(signupVOWis);
     }
 
@@ -86,6 +100,7 @@ public class SignupServiceWis {
             loopVO.setPhoneNumber3(arrPN[2]);
             // 3. 담은 데이터를 다시 List에 담아준다
             signupList.set(i, loopVO);
+
         }
 
         for (int i = 0; i < signupList.size(); i++) {

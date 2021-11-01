@@ -32,7 +32,7 @@
 			, #{termsSellYn}
 		)
 	</insert>
-		<select id="signupListwis" resultType="signupVOwis" parameterType="signupVOwis">
+		<select id="signupListwis" resultType="signupVOWis" parameterType="signupVOWis">
 			SELECT
 			user_id,
 			seq,

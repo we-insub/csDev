@@ -30,7 +30,8 @@ public class TestController {
     public String testSave(TestVO testVO){
         List<TestVO> testVOList = testVO.getListTestVO();
 
-        for (TestVO vo: testVOList) {
+        for (int i = 0; i < testVOList.size(); i++) {
+            TestVO vo = testVOList.get(i);
             System.out.println( vo );
         }
 
