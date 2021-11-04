@@ -52,6 +52,12 @@
 				<if test="userId != null and !userId.equals('')">
 					AND user_id LIKE '%' || #{userId} || '%'
 				</if>
+				<if test="nickname != null and !nickname.equals('')">
+					AND nickname LIKE '%' || #{nickname} || '%'
+				</if>
+				<if test="gender != null and !gender.equals('')">
+					AND gender LIKE '%' || #{gender} || '%'
+				</if>
 			</where>
 			ORDER BY seq DESC
 		</select>
@@ -74,20 +80,5 @@
 		where seq = #{seq}
 	</update>
 
-<!--	<update id="saveVisit" parameterType="VisitVO">-->
-<!--		WITH UPSERT AS (-->
-<!--		UPDATE kcs.visit_wis-->
-<!--		SET Country  = #{Country}-->
-<!--		  , city = #{city}-->
-<!--		WHERE Country = #{Country} RETURNING *-->
-<!--)-->
-<!--		INSERT-->
-<!--		INTO kcs.visit_wis ( Country-->
-<!--						   , city-->
-<!--						   , vdate1)-->
-<!--		SELECT #{Country}-->
-<!--			 , #{city}-->
-<!--			 , #{vdate1} WHERE NOT EXISTS ( SELECT * FROM UPSERT )-->
-<!--	</update>-->
 
 </mapper>

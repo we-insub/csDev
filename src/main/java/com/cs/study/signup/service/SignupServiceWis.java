@@ -105,10 +105,10 @@ public class SignupServiceWis {
 
         for (int i = 0; i < signupList.size(); i++) {
             SignupVOWis loopVO = signupList.get(i);
-            System.out.println("pn1 :: " + loopVO.getPhoneNumber1());
-            System.out.println("pn2 :: " + loopVO.getPhoneNumber2());
-            System.out.println("pn3 :: " + loopVO.getPhoneNumber3());
-            System.out.println("=================================");
+//            System.out.println("pn1 :: " + loopVO.getPhoneNumber1());
+//            System.out.println("pn2 :: " + loopVO.getPhoneNumber2());
+//            System.out.println("pn3 :: " + loopVO.getPhoneNumber3());
+//            System.out.println("=================================");
         }
 
         return signupList;

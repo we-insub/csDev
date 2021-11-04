@@ -63,9 +63,17 @@
                                 <input type="text" class="form-control" id="nickname" placeholder="닉네임" name="nickname" value="${signupVOWis.nickname}">
                             </div>
                         </div>
+<%--                    </div>--%>
+                    <c:forEach var="gd"  items="${signupGender}"  varStatus="status4">
+                        <input type="radio" id="gender${status4.index }" name="gender" value="${gd.dtlCd }" >
+                        <label for="gender${status4.index }" >${gd.dtlNm }</label>
+                    </c:forEach>
+                    </div>
                         <div class="col-auto">
                             <button name="action" class="btn btn-info" type="submit">조회</button>
                             <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
+                        </div>
+                        <div>
                         </div>
                     </div>
                     </form:form>
@@ -118,14 +126,10 @@
                                         <input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" />
                                     </td>
                                     <td>
-<%--                                        <c:forEach var="map" items="${signupGender}" varStatus="status3">--%>
-<%--                                            <input type="radio" id="gender${status.count}" value="${list.gender}" name="ListSignupVOWis[${status.index}].gender${list.seq }"--%>
-<%--                                                   <c:if test="${list.gender eq map.dtlCd}">checked="checked"</c:if>>--%>
-<%--                                            <label for="gender${status.count}" >${map.dtlNm }</label>--%>
-<%--                                        </c:forEach>--%>
-
                                         <c:forEach var="gd"  items="${signupGender}"  varStatus="status3">
-                                            <input  type="radio" id="gender${status3.index }" name="ListSignupVOWis[${status.index}].gender<%-- ${status.index } --%>" value="${gd.dtlCd }" <c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> >
+                                            <input  type="radio" id="gender${status3.index }"
+                                                    name="ListSignupVOWis[${status.index}].gender" value="${gd.dtlCd }"
+                                                    <c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> >
                                             <label for="gender${status3.index }" >${gd.dtlNm }</label>
                                         </c:forEach>
                                     </td>
@@ -155,7 +159,7 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
+    </div>
 
 </body>
 </html>

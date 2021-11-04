@@ -115,20 +115,6 @@ public class SignupControllerWis {
         return "signup/signupListWis";
     }
 
-//     아래꺼 수정 편안하게 하기위해서 원본임
-//    @PostMapping("/signup/listUpdate")
-//    public String listUpdate(SignupVOWis signupVOWis) {
-//        List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
-//
-//        System.out.println("오늘저녁은 초밥이당 ");
-//        for (int i = 0; i < updateList.size(); i++) {
-//            SignupVOWis vo = updateList.get(i);
-//            System.out.println("*********************");
-//            System.out.println( vo );
-//            System.out.println("*********************");
-//        }
-//        return "redirect:/signup/signupListWis";
-//    }
 
     @PostMapping("/signup/listUpdate")
     public String listUpdate(Model model,SignupVOWis signupVOWis) {
@@ -147,14 +133,6 @@ public class SignupControllerWis {
         return "redirect:/signup/signupListWis";
     }
 
-//    @PostMapping("/01visitlistsaveadd")
-//    public String syncSampleFormSave(Model model, SignupVOWis signupVOWis, @RequestParam(value="btnSave", required=true) String btnSave){
-//        List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
-//        List<SignupVOWis> ListUpdate = signupVOWis.getListSignupVOWis();
-//        if ( "save".equals(btnSave) ){
-//            int saveCnt = SignupServiceWis.ListUpdate(signupVOWis);
-//        }
-//        return "redirect:/signup/signupListWis";
-//    }
+
 
 }
