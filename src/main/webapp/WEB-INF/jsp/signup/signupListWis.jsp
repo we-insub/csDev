@@ -166,25 +166,18 @@
 </html>
 <script>
 
-    // 아래코드는 체크올이 체크되었을때 아래체크박스가 모두 체크되게 하기 혹은 체크해제
     $(document).ready(function(){
 
-        // 1. 초기화버튼을 눌렀을때
-        // 2. 웨얼절에 검색된 리스트 뿌린것을 초기화한다
-        // 3. 정말 쉽게하려면 그냥 동적으로 페이지이동시켜서 업데이트 치면될듯
-        //
 
 
-        // 수정 버튼 눌렀을 떄
+        // 수정버튼을 눌렀을때, 수정이 된 데이터들을 submit으로 값을 다시 업데이트 해준다.
         $('#btnSave').click(function(){
             //alert("안녕");
             $('#updatelist').submit();
         });
-        // $('#btnSave').click(function (){
-        //     $('#updatelist').submit;
-        //     // alert("test");
-        // });
 
+        // 체크올 버튼 왼쪽 버튼을 눌렀을 경우함수
+        // 만약 체크올에 체크가 되어있다면 , 체크박스 네임이 check인것들의 속성값을 체크 혹은 해제 해라.
         $("#checkall").change(function(){
             if($("#checkall").is(":checked",true)){
                 $("input:checkbox[name='check']").prop("checked", true);
@@ -195,23 +188,14 @@
         });
     });
 
-
-    // function saveSample(){
-    //     $('#action').val('save');
-    //     // $('#btnDelete').hide();
-    //     fn_callAjax('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_saveSample);
-    // }
-    //
-    // function cb_saveSample( rstData ){
-    //     selectSampleList();
-    //     fn_formReset('frmSave');
-    //     alert('저장완료');
-    // }
-
-    // 아레코드는 체크박스 클래스를 불러와서 변수 a에 담고, 체크박스 모두 뽑아서 체크가 모두 되면 체크올 체크 혹은 해제
+    // 인풋박스 list-check 클래스 인것들의 값이 변하면
+    // checkbuttoncheck 함수에 클래스 list-check 에 포함되어있는 체크박스를 담는다.
+    // checkbuttoncheck 의 길이와 checkbuttoncheck버튼의 체크되어있는 길이가 같다면, (즉 그 카운트)
+    // 위에 문장은 즉, 전체의 체크박스의 체크박스의 값이 체크가 되어있다면,
+    // 체크올 체크박스를 체크해라, 혹은 체크해제해라
     $("input[type='checkbox'].list-check").change(function(){
-        var a = $("input[type='checkbox'].list-check");
-        if(a.length == a.filter(":checked").length){
+        var checkbuttoncheck = $("input[type='checkbox'].list-check");
+        if(checkbuttoncheck.length == checkbuttoncheck.filter(":checked").length){
             $("input:checkbox[name='checkall']").prop("checked", true);
         }
         else{
@@ -219,14 +203,6 @@
         }
     });
 
-    // //상위 체크박스 (체크올) 을 클릭할시에 로우에있는 체크박스들 체크되게 하기
-    // $('#checkall').click(function () {
-    //     if ($("input:checkbox[name='checkall']").prop("checked")) {
-    //         $("input:checkbox[name='check']").prop("checked", true);
-    //     } else {
-    //         $("input:checkbox[name='check']").prop("checked", false);
-    //     }
-    // });
 
 
 </script>
