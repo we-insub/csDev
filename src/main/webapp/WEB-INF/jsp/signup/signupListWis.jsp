@@ -72,6 +72,7 @@
                         <div class="col-auto">
                             <button name="action" class="btn btn-info" type="submit">조회</button>
                             <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
+                            <button id="btnReset" name="btnReset" value="reset" type="button" class="btn btn-success" onclick="location.href='/signup/signupListWis'">초기화</button>
                         </div>
                         <div>
                         </div>
@@ -167,6 +168,11 @@
 
     // 아래코드는 체크올이 체크되었을때 아래체크박스가 모두 체크되게 하기 혹은 체크해제
     $(document).ready(function(){
+
+        // 1. 초기화버튼을 눌렀을때
+        // 2. 웨얼절에 검색된 리스트 뿌린것을 초기화한다
+        // 3. 정말 쉽게하려면 그냥 동적으로 페이지이동시켜서 업데이트 치면될듯
+        //
 
 
         // 수정 버튼 눌렀을 떄
