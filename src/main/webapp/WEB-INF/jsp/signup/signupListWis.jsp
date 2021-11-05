@@ -73,6 +73,7 @@
                             <button name="action" class="btn btn-info" type="submit">조회</button>
                             <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
                             <button id="btnReset" name="btnReset" value="reset" type="button" class="btn btn-success" onclick="location.href='/signup/signupListWis'">초기화</button>
+                            <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" onclick="vlaueChk()">채크</button>
                         </div>
                         <div>
                         </div>
@@ -83,7 +84,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th style="width: 2%;"><input name="checkall" id="checkall" type="checkbox"  /></th>
+                                <th style="width: 2%;"><input name="checkall" id="checkall" name="checkall" type="checkbox" /></th>
                                 <th scope="col" style="width: 1%;">#</th>
                                 <th scope="col" style="width: 10%;">ID</th>
                                 <th scope="col" style="width: 10%;">비밀번호</th>
@@ -102,7 +103,10 @@
                             <tbody>
                             <c:forEach var="list" items="${signupListwis}" varStatus="status">
                                 <tr>
-                                    <td><input type="checkbox" class="list-check" name="check" id="check"  /></td>
+<%--                                    2021.11.04 vlaue값을 시퀄이랑 엮어서 고유값으로 해서 그값을 불러와서 시퀄을 갖고 이벤트발생하기--%>
+<%--                                    <td><input type="checkbox" class="list-check" name="check" id="check"/></td>--%>
+<%--                                    <td><input type="checkbox" class="list-check" name="check" id="check" onclick="vlaueChk()"/></td>--%>
+                                    <td><input type="checkbox" class="list-check" name="check" id="check" value="${list.seq}"   /></td>
                                     <td scope="row"><c:out value="${status.count}" /></td>
                                     <td>
                                         <input type="hidden" name="ListSignupVOWis[${status.index}].seq" value="${list.seq}"/>
@@ -151,8 +155,8 @@
                         </table>
                         <!-- 요기가 컨텐츠 끝 -->
                     </form:form>
-                </div>
-            </div>
+                </div id="ex3_Result1">
+            </div id="ex3_Result2">
             <!-- Footer -->
             <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
             <!-- End of Footer -->
@@ -203,8 +207,82 @@
         }
     });
 
+    // 체크박스를 누르고나서 체크 버튼을 눌렀을때, 체크박스에 담긴 벨류값을 확인하기 위한 코드
+    // 만약 로우 데이터를 삭제하고 싶다면 (인덱스) 체크박스를 시퀄스와엮었으니까 그 시퀄스에 해당하는 로우를 지우면될것같아서,
+    // 그래서 체크박스의 벨류인 시퀄 스의 값을 뺴오는걸로 로직을 짜봤음.
+    function vlaueChk(){
+        var obj = $("[name=check]");
+        var chkArray = new Array(); // 배열 선언
+
+        $('input:checkbox[name=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+            chkArray.push(this.value);
+        });
+        alert(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+    }
 
 
+    // 아래 코드부분은 정상 작동이 되지않음 즉, 값이 제대로안담기는데 시간투자해보자
+    // 상단 선택버튼 클릭시 체크된 Row의 값을 가져온다.
+    // $("#btncheck").click(function(){
+    //
+    //     var rowData = new Array();
+    //     var tdArr = new Array();
+    //     var checkbox = $("input[name=check]:checked");
+    //
+    //     // 체크된 체크박스 값을 가져온다
+    //     $("#ex3_Result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);
+    //
+    //     checkbox.each(function(i) {
+    //
+    //         // checkbox.parent() : checkbox의 부모는 <td>이다.
+    //         // checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+    //         var tr = checkbox.parent().parent().eq(i);
+    //         var td = tr.children();
+    //
+    //         // 체크된 row의 모든 값을 배열에 담는다.
+    //         rowData.push(tr.text());
+    //
+    //         // td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+    //         var seq = td.eq(1).text()+", ";
+    //         var userId = td.eq(2).text()+", ";
+    //         var userPw = td.eq(3).text()+", ";
+    //         var pwQuestion = td.eq(4).text()+", ";
+    //         var pwAnswer = td.eq(5).text()+", ";
+    //         var nickname = td.eq(6).text()+", ";
+    //         var phoneNumber = td.eq(7).text()+", ";
+    //         var gender = td.eq(8).text()+", ";
+    //         var address1 = td.eq(9).text()+", ";
+    //         var address2 = td.eq(10).text()+", ";
+    //         var termsInfoYn = td.eq(11).text()+", ";
+    //         var termsBuyYn = td.eq(12).text()+", ";
+    //         var termsSellYn = td.eq(13).text()+", ";
+    //
+    //         // 가져온 값을 배열에 담는다.
+    //         tdArr.push(seq);
+    //         tdArr.push(userId);
+    //         tdArr.push(userPw);
+    //         tdArr.push(pwQuestion);
+    //         tdArr.push(pwAnswer);
+    //         tdArr.push(nickname);
+    //         tdArr.push(phoneNumber);
+    //         tdArr.push(gender);
+    //         tdArr.push(address1);
+    //         tdArr.push(address2);
+    //         tdArr.push(termsInfoYn);
+    //         tdArr.push(termsBuyYn);
+    //         tdArr.push(termsSellYn);
+    //
+    //         //console.log("no : " + no);
+    //         //console.log("userid : " + userid);
+    //         //console.log("name : " + name);
+    //         //console.log("email : " + email);
+    //     });
+    //
+    //     var idchk1 = $("#ex3_Result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);
+    //     var idchk2 = $("#ex3_Result2").html(tdArr);
+    //     alert(idchk1);
+    // });
+    // 현재 출력값 Object object로 출력되는것 확인했음.
 </script>
 
 
