@@ -73,7 +73,8 @@
                             <button name="action" class="btn btn-info" type="submit">조회</button>
                             <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
                             <button id="btnReset" name="btnReset" value="reset" type="button" class="btn btn-success" onclick="location.href='/signup/signupListWis'">초기화</button>
-                            <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" onclick="vlaueChk()">채크</button>
+<%--쓸꺼면 아래 온클릭 함수 살려     <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" onclick="vlaueChk()">체크</button> --%>
+                            <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" >체크</button>
                         </div>
                         <div>
                         </div>
@@ -81,7 +82,7 @@
                     </form:form>
                     <form:form id="updatelist" action="/signup/listUpdate" method="post">
                         <br /><br />
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="tableId">
                             <thead>
                             <tr>
                                 <th style="width: 2%;"><input name="checkall" id="checkall" name="checkall" type="checkbox" /></th>
@@ -155,14 +156,14 @@
                         </table>
                         <!-- 요기가 컨텐츠 끝 -->
                     </form:form>
-                </div id="ex3_Result1">
-            </div id="ex3_Result2">
+                </div>
+            </div>
             <!-- Footer -->
             <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
             <!-- End of Footer -->
-        </div>
+        </div id=div1>
         <!-- End of Content Wrapper -->
-    </div>
+    </div id=div2>
     <!-- End of Page Wrapper -->
     </div>
 
@@ -210,79 +211,105 @@
     // 체크박스를 누르고나서 체크 버튼을 눌렀을때, 체크박스에 담긴 벨류값을 확인하기 위한 코드
     // 만약 로우 데이터를 삭제하고 싶다면 (인덱스) 체크박스를 시퀄스와엮었으니까 그 시퀄스에 해당하는 로우를 지우면될것같아서,
     // 그래서 체크박스의 벨류인 시퀄 스의 값을 뺴오는걸로 로직을 짜봤음.
-    function vlaueChk(){
-        var obj = $("[name=check]");
-        var chkArray = new Array(); // 배열 선언
 
-        $('input:checkbox[name=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-            chkArray.push(this.value);
-        });
-        alert(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
-    }
-
-
-    // 아래 코드부분은 정상 작동이 되지않음 즉, 값이 제대로안담기는데 시간투자해보자
-    // 상단 선택버튼 클릭시 체크된 Row의 값을 가져온다.
-    // $("#btncheck").click(function(){
+    // 이것은 버튼을 눌렀을때 온클릭으로 연결을 해둔것이다 이치문으로 돌기떄문에 여러 체크박스의 벨류값이 하나이 얼랏창에 뜬다.
+    // 하지만 아래 고친 코드를 보면 이치문을 사용하지않아서 단건얼랏으로 데이터들이 뜨는것을 볼수 있다.
+    // 일단은 아래것이 모든 정보를 조회해오니까 아래 함수를 사용을 하고(버튼클릭) 머지하도록 해보자
     //
-    //     var rowData = new Array();
-    //     var tdArr = new Array();
-    //     var checkbox = $("input[name=check]:checked");
+    // function vlaueChk(){
+    //     var obj = $("[name=check]");
+    //     var chkArray = new Array(); // 배열 선언
     //
-    //     // 체크된 체크박스 값을 가져온다
-    //     $("#ex3_Result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);
-    //
-    //     checkbox.each(function(i) {
-    //
-    //         // checkbox.parent() : checkbox의 부모는 <td>이다.
-    //         // checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-    //         var tr = checkbox.parent().parent().eq(i);
-    //         var td = tr.children();
-    //
-    //         // 체크된 row의 모든 값을 배열에 담는다.
-    //         rowData.push(tr.text());
-    //
-    //         // td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-    //         var seq = td.eq(1).text()+", ";
-    //         var userId = td.eq(2).text()+", ";
-    //         var userPw = td.eq(3).text()+", ";
-    //         var pwQuestion = td.eq(4).text()+", ";
-    //         var pwAnswer = td.eq(5).text()+", ";
-    //         var nickname = td.eq(6).text()+", ";
-    //         var phoneNumber = td.eq(7).text()+", ";
-    //         var gender = td.eq(8).text()+", ";
-    //         var address1 = td.eq(9).text()+", ";
-    //         var address2 = td.eq(10).text()+", ";
-    //         var termsInfoYn = td.eq(11).text()+", ";
-    //         var termsBuyYn = td.eq(12).text()+", ";
-    //         var termsSellYn = td.eq(13).text()+", ";
-    //
-    //         // 가져온 값을 배열에 담는다.
-    //         tdArr.push(seq);
-    //         tdArr.push(userId);
-    //         tdArr.push(userPw);
-    //         tdArr.push(pwQuestion);
-    //         tdArr.push(pwAnswer);
-    //         tdArr.push(nickname);
-    //         tdArr.push(phoneNumber);
-    //         tdArr.push(gender);
-    //         tdArr.push(address1);
-    //         tdArr.push(address2);
-    //         tdArr.push(termsInfoYn);
-    //         tdArr.push(termsBuyYn);
-    //         tdArr.push(termsSellYn);
-    //
-    //         //console.log("no : " + no);
-    //         //console.log("userid : " + userid);
-    //         //console.log("name : " + name);
-    //         //console.log("email : " + email);
+    //     $('input:checkbox[name=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+    //         chkArray.push(this.value);
     //     });
-    //
-    //     var idchk1 = $("#ex3_Result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);
-    //     var idchk2 = $("#ex3_Result2").html(tdArr);
-    //     alert(idchk1);
-    // });
-    // 현재 출력값 Object object로 출력되는것 확인했음.
+    //     alert("해당 체크박스의 seq 번호는 "+ chkArray +"입니다."); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+    // }
+
+
+    // https://secret87.tistory.com/166 참고한곳 벨류 다 긁어오기
+    $('#btncheck').on('click', function() {
+        var checkbox = $('input[id=check]:checked');
+        //console.log(checkbox);
+        var tr = checkbox.parent().parent();
+        // 구조를 보면 checkbox.parent();는 td이고
+        // checkbox.parent().parent();를 해야 tr값이다.
+        var td = tr.children();
+
+        //var code = td.eq(4).children().val();
+        // eq(0)은 체크 박스, eq(1)은 code, eq(2)는 이름의 td이다.
+        // td안에 input이 있기 때문에 children()으로 한번 더 들어가서 값을 뽑아낸다.
+
+        // var name = td.eq(6).children().val();
+        var seq = td.eq(2).children().val();
+        var userId = td.eq(3).children().val();
+        var userPw = td.eq(4).children().val();
+        var pwQuestion = td.eq(5).children().val();
+        var pwAnswer = td.eq(6).children().val();
+        var nickname = td.eq(7).children().val();
+        var phoneNumber = td.eq(8).children().val();
+        var gender = td.eq(9).children().val();
+        var address1 = td.eq(10).children().val();
+        var address2 = td.eq(11).children().val();
+        var termsInfoYn = td.eq(12).children().val();
+        var termsBuyYn = td.eq(13).children().val();
+        var termsSellYn = td.eq(14).children().val();
+
+        // 얼랏으로 단일 체크 박스의 벨류값들을 확인 할수 있다.
+        // alert('seq : ' + seq + '\nuserId : ' + userId
+        //     + '\nuserPw : ' + userPw+ '\npwQuestion : ' + pwQuestion+ '\npwAnswer : ' + pwAnswer+ '\nnickname : ' + nickname+ '\nphoneNumber : ' + phoneNumber
+        //     + '\ngender : ' + gender+ '\naddress1 : ' + address1+ '\naddress2 : ' + address2+ '\ntermsInfoYn : ' + termsInfoYn+ '\ntermsBuyYn : ' + termsBuyYn
+        //     + '\ntermsSellYn : ' + termsSellYn);
+
+
+        // 이렇게 할 경우에는 체크박스에 체크가 여러개 되어있어도 맨위에 체크된 값만 가져온다.
+
+        // 만약 체크된 모든 row의 값을 가져오고 싶다면
+        var tdArray = new Array();
+        // 배열을 선언해 준 후
+        checkbox.each(function(i) {
+            tr = checkbox.parent().parent().eq(i);
+            // tr에서 쓰인 .eq는 체크된 수만큼의 tr을 의미한다. 즉 체크된 수만큼 tr이 존재한다.
+
+            td = tr.children();
+            // code = td.eq(1).children().val() + ", ";
+            // name = td.eq(2).children().val() + ", ";
+            seq = td.eq(2).children().val() + ", ";
+            userId = td.eq(3).children().val() + ", ";
+            userPw = td.eq(4).children().val() + ", ";
+            pwQuestion = td.eq(5).children().val() + ", ";
+            pwAnswer = td.eq(6).children().val() + ", ";
+            nickname = td.eq(7).children().val() + ", ";
+            phoneNumber = td.eq(8).children().val() + ", ";
+            gender = td.eq(9).children().val() + ", ";
+            address1 = td.eq(10).children().val() + ", ";
+            address2 = td.eq(11).children().val() + ", ";
+            termsInfoYn = td.eq(12).children().val() + ", ";
+            termsBuyYn = td.eq(13).children().val() + ", ";
+            termsSellYn = td.eq(14).children().val() + ", ";
+
+            tdArray.push(seq);
+            tdArray.push(userId);
+            tdArray.push(userPw);
+            tdArray.push(pwQuestion);
+            tdArray.push(pwAnswer);
+            tdArray.push(nickname);
+            tdArray.push(phoneNumber);
+            tdArray.push(gender);
+            tdArray.push(address1);
+            tdArray.push(address2);
+            tdArray.push(termsInfoYn);
+            tdArray.push(termsBuyYn);
+            tdArray.push(termsSellYn);
+            alert('seq : ' + seq + '\nuserId : ' + userId
+                + '\nuserPw : ' + userPw+ '\npwQuestion : ' + pwQuestion+ '\npwAnswer : ' + pwAnswer+ '\nnickname : ' + nickname+ '\nphoneNumber : ' + phoneNumber
+                + '\ngender : ' + gender+ '\naddress1 : ' + address1+ '\naddress2 : ' + address2+ '\ntermsInfoYn : ' + termsInfoYn+ '\ntermsBuyYn : ' + termsBuyYn
+                + '\ntermsSellYn : ' + termsSellYn);
+        });
+        $('#array').html(tdArray);
+    });
+
+
 </script>
 
 
