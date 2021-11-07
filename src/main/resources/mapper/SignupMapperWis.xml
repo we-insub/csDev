@@ -81,4 +81,8 @@
 	</update>
 
 
+	<delete id="ListDelete" parameterType="signupVOwis">
+		DELETE FROM tb_user
+		WHERE seq = #{seq}
+	</delete>
 </mapper>

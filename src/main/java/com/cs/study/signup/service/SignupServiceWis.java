@@ -30,8 +30,17 @@ public class SignupServiceWis {
             signupVOWis.setTermsSellYn("N");
         }
 
-
         return signupMapperWis.ListUpdate(signupVOWis);
+    }
+
+    public int ListDelete(SignupVOWis signupVOWis) {
+
+        if(signupVOWis.getBtncheck() == null){
+           signupVOWis.setBtncheck("N");
+        }
+
+
+        return signupMapperWis.ListDelete(signupVOWis);
     }
 
     public boolean isNumeric(String str) {
@@ -113,4 +122,6 @@ public class SignupServiceWis {
 
         return signupList;
     }
+
+
 }

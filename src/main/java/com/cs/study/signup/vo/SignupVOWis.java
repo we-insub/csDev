@@ -26,5 +26,8 @@ public class SignupVOWis {
     private String termsInfoYn;
     private String termsBuyYn;
     private String termsSellYn;
+    private String btncheck;
+
+
     private List<SignupVOWis> ListSignupVOWis;
 }
