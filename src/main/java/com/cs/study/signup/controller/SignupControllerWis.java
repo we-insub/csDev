@@ -1,5 +1,6 @@
 package com.cs.study.signup.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.cs.study.sample.vo.SampleVO;
 import com.cs.study.sample.vo.VisitVO;
 import com.cs.study.signup.service.SignupServiceWis;
@@ -149,8 +150,17 @@ public class SignupControllerWis {
                 System.out.println("*********************");
                 System.out.println(vo);
                 System.out.println("*********************");
+                System.out.println("Btncheck 버튼체크 : "+signupVOWis.getBtncheck());
 
-                signupServiceWis.ListDelete(signupVOWis);
+                if(signupVOWis.getBtncheck() == "Y"){
+                    System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+                    //int deleteCnt = signupServiceWis.ListDelete(signupVOWis);
+                }
+
+
+                //int deleteCnt = signupServiceWis.ListDelete(signupVOWis);
+
+                //signupServiceWis.ListDelete(signupVOWis);
                 signupServiceWis.ListUpdate(ListDelete.get(i));
 
             }
