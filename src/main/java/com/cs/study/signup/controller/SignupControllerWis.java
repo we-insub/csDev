@@ -123,6 +123,8 @@ public class SignupControllerWis {
         return "signup/signupListWis";
     }
 
+    // 널값 매핑 오류가있어서 검색해보니 널을 값을 지정을 해주면된다해서
+    // 널값을 N 으로 받았더니 오류 발생하지않음.
     @PostMapping("/signup/listUpdate")
     public String listUpdate(Model model, SignupVOWis signupVOWis, @RequestParam(value = "action", required = true) String action ) {
 
@@ -134,10 +136,18 @@ public class SignupControllerWis {
             for (int i = 0; i < updateList.size(); i++) {
 
                 SignupVOWis vo = updateList.get(i);
-//                System.out.println("*********************");
-//                System.out.println(vo);
-//                System.out.println("*********************");
-                signupServiceWis.ListUpdate(updateList.get(i));
+                System.out.println("*********************");
+                System.out.println(vo);
+                System.out.println("*********************");
+
+                if(vo.getBtncheck()== null){
+                    vo.setBtncheck("N");
+                }
+
+                if(vo.getBtncheck().equals("Y")){
+                    signupServiceWis.ListUpdate(updateList.get(i));
+                }
+//                signupServiceWis.ListUpdate(updateList.get(i));
 
             }
         } else if ("delete".equals(action)) {
@@ -150,31 +160,17 @@ public class SignupControllerWis {
                 System.out.println("*********************");
                 System.out.println(vo);
                 System.out.println("*********************");
-                System.out.println("Btncheck 버튼체크 : "+signupVOWis.getBtncheck());
-
-                if(signupVOWis.getBtncheck() == "Y"){
-                    System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-                    //int deleteCnt = signupServiceWis.ListDelete(signupVOWis);
+                System.out.println("Btncheck 버튼체크 : "+vo.getBtncheck());
+                // VO안에 있는 값을 뽑아야 함으로 VO안에 있는값을 갖고 진행해야한다.
+                if(vo.getBtncheck()== null){
+                    vo.setBtncheck("N");
                 }
 
-
-                //int deleteCnt = signupServiceWis.ListDelete(signupVOWis);
-
-                //signupServiceWis.ListDelete(signupVOWis);
-                signupServiceWis.ListUpdate(ListDelete.get(i));
-
+                if(vo.getBtncheck().equals("Y")){
+                    signupServiceWis.ListDelete(ListDelete.get(i));
+                }
             }
-            System.out.println("============================");
         }
             return "redirect:/signup/signupListWis";
-
     }
 }
-//
-//    public String syncSampleFormSave(Model model, SampleVO sampleVO, @RequestParam(value="action", required=true) String action){
-//        if ( "save".equals(action) ){
-//            int saveCnt = sampleService.saveSample(sampleVO);
-//        }else if ( "delete".equals(action) ){
-//            int deleteCnt = sampleService.deleteSample(sampleVO);
-//        }
-//        return "redirect:/syncSampleListWis";
