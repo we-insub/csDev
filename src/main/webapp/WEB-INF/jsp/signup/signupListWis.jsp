@@ -76,6 +76,7 @@
                                 <%--쓸꺼면 아래 온클릭 함수 살려     <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" onclick="vlaueChk()">체크</button> --%>
                             <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" >체크</button>
                             <button id="btnDelete" name="btnDelete" value="delete" type="button" class="btn btn-success">삭제</button>
+                            <button name="btnchange" id="btnchange" class="btn btn-info" type="submit">행열</button>
                         </div>
                         <div>
                         </div>
@@ -202,9 +203,9 @@
 
         //체크 버튼을 눌렀을때, 체크박스에 시퀄스 벨류값을 담아준다 .그것을 확인하는 로직.
         $('#btncheck').click(function (){
-            var obj = $("[name=check]");
+            var obj = $("[id=check]");
             var chkArray = new Array(); // 배열 선언%
-            $('input:checkbox[name=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+            $('input:checkbox[id=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
                 chkArray.push(this.value);
             });
             alert("해당 체크박스의 seq 번호는 "+ chkArray +"입니다."); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
@@ -216,10 +217,10 @@
         // 만약 체크올에 체크가 되어있다면 , 체크박스 네임이 check인것들의 속성값을 체크 혹은 해제 해라.
         $("#checkall").change(function(){
             if($("#checkall").is(":checked",true)){
-                $("input:checkbox[name='check']").prop("checked", true);
+                $("input:checkbox[id='check']").prop("checked", true);
             }
             else{
-                $("input:checkbox[name='check']").prop("checked", false);
+                $("input:checkbox[id='check']").prop("checked", false);
             }
         });
     });
@@ -236,6 +237,28 @@
         else{
             $("input:checkbox[name='checkall']").prop("checked", false);
         }
+    });
+
+    // 행과 열을 변경하는 로직입니다.
+    $("#btnchange").click(function(){
+        $("table").each(function() {
+            var $this = $(this);
+            var newrows = [];
+            $this.find("tr").each(function(){
+                var i = 0;
+                $(this).find("td").each(function(){
+                    i++;
+                    if(newrows[i] === undefined) { newrows[i] = $("<tr></tr>"); }
+                    newrows[i].append($(this));
+                });
+            });
+            $this.find("tr").remove();
+            $.each(newrows, function(){
+                $this.append(this);
+            });
+        });
+
+        return false;
     });
     // 체크박스를 누르고나서 체크 버튼을 눌렀을때, 체크박스에 담긴 벨류값을 확인하기 위한 코드
     // 만약 로우 데이터를 삭제하고 싶다면 (인덱스) 체크박스를 시퀄스와엮었으니까 그 시퀄스에 해당하는 로우를 지우면될것같아서,
