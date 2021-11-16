@@ -132,7 +132,7 @@ public class SignupControllerWis {
         if ("update".equals(action)) {
             List<SignupVOWis> updateList = signupVOWis.getListSignupVOWis();
 
-            System.out.println("for 문 돌기전에 확인");
+            System.out.println("update update update update update update update update update update update update update ");
             for (int i = 0; i < updateList.size(); i++) {
 
                 SignupVOWis vo = updateList.get(i);
@@ -153,7 +153,7 @@ public class SignupControllerWis {
         } else if ("delete".equals(action)) {
             List<SignupVOWis> ListDelete = signupVOWis.getListSignupVOWis();
 
-            System.out.println("for 문 돌기전에 확인");
+            System.out.println("delete delete delete delete delete delete delete delete delete delete");
             for (int i = 0; i < ListDelete.size(); i++) {
 
                 SignupVOWis vo = ListDelete.get(i);

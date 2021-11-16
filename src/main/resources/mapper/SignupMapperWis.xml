@@ -32,6 +32,35 @@
 			, #{termsSellYn}
 		)
 	</insert>
+	<insert id="addSignupWis" parameterType="signupVOWis">
+		INSERT INTO kcs.tb_user(
+			user_id,
+			user_pw,
+			pw_question,
+			pw_answer,
+			nickname,
+			phone_number,
+			gender,
+			address1,
+			address2,
+			terms_info_yn,
+			terms_buy_yn,
+			terms_sell_yn
+		) VALUES (
+					 #{userId}
+				 , #{userPw}
+				 , #{pwQuestion}
+				 , #{pwAnswer}
+				 , #{nickname}
+				 , #{phoneNumber}
+				 , #{gender}
+				 , #{address1}
+				 , #{address2}
+				 , #{termsInfoYn}
+				 , #{termsBuyYn}
+				 , #{termsSellYn}
+				 )
+	</insert>
 		<select id="signupListwis" resultType="signupVOWis" parameterType="signupVOWis">
 			SELECT
 			user_id,

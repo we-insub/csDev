@@ -16,4 +16,6 @@ public interface SignupMapperWis {
     public int ListUpdate(SignupVOWis signupVOWis);
 
     public int ListDelete(SignupVOWis signupVOWis);
+
+    public int addSignupWis(SignupVOWis signupVOWis);
 }

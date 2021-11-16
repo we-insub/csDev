@@ -35,11 +35,9 @@ public class SignupServiceWis {
 
     public int ListDelete(SignupVOWis signupVOWis) {
 
-        if(signupVOWis.getBtncheck() == null){
-           signupVOWis.setBtncheck("N");
+        if(signupVOWis.getBtncheck().equals("null")){
+            signupVOWis.setBtncheck("N");
         }
-
-
         return signupMapperWis.ListDelete(signupVOWis);
     }
 
