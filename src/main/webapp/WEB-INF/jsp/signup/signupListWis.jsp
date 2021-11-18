@@ -110,8 +110,8 @@
                                     <%--                                    2021.11.04 vlaue값을 시퀄이랑 엮어서 고유값으로 해서 그값을 불러와서 시퀄을 갖고 이벤트발생하기--%>
                                     <%--                                    <td><input type="checkbox" class="list-check" name="check" id="check"/></td>--%>
                                     <%--                                    <td><input type="checkbox" class="list-check" name="check" id="check" onclick="vlaueChk()"/></td>--%>
-
-                                <td><input type="checkbox" class="list-check" name="ListSignupVOWis[${status.index}].btncheck" id="check" value="Y"/></td>
+<%--                                        <c:set var="status_idx" value="ListSignupVOWis[${status.index}].btncheck"></c:set>--%>
+                                        <td><input type="checkbox" class="list-check" name="ListSignupVOWis[${status.index}].btncheck" id="check" value="Y"/></td>
 <%--                        체크박스에 강제 seq 박기       <td><input type="checkbox" class="list-check" name="check" id="check" value="${list.seq}"   /></td>--%>
                                 <td scope="row"><c:out value="${status.count}" /></td>
                                 <td>
@@ -155,6 +155,9 @@
                                 <td>
                                     <input type="checkbox" name="ListSignupVOWis[${status.index}].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>>
                                 </td>
+<%--                                <td>--%>
+<%--                                    <input type="hidden" name="check_index" id="check_index" value="ListSignupVOWis[${status.index}]">--%>
+<%--                                </td>--%>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -194,21 +197,22 @@
 
 
         //체크 버튼을 눌렀을때, 체크박스에 시퀄스 벨류값을 담아준다 .그것을 확인하는 로직.
-        $('#btncheck').click(function (){
-            var obj = $("[id=check]");
-            var chkArray = new Array(); // 배열 선언%
-            $('input:checkbox[id=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-                chkArray.push(this.value);
-            });
-            alert("해당 체크박스의 seq 번호는 "+ chkArray +"입니다."); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
-
-        });
+        // $('#btncheck').click(function (){
+        //     var obj = $("[id=check]");
+        //     var chkArray = new Array(); // 배열 선언%
+        //     $('input:checkbox[id=check]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+        //         chkArray.push(this.value);
+        //     });
+        //     alert("해당 체크박스의 seq 번호는 "+ chkArray +"입니다."); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+        //
+        // });
 
 
         // 체크올 버튼 왼쪽 버튼을 눌렀을 경우함수
         // 만약 체크올에 체크가 되어있다면 , 체크박스 네임이 check인것들의 속성값을 체크 혹은 해제 해라.
         $("#checkall").change(function(){
             if($("#checkall").is(":checked",true)){
+                // alert($('#check_index').val());
                 $("input:checkbox[id='check']").prop("checked", true);
             }
             else{
@@ -233,6 +237,8 @@
 
     function row_add() {
         var my_tbody = document.getElementById('my-tbody');
+        var idx_List = document.getElementsByClassName('list-check').length-1;
+
         // var row = my_tbody.insertRow(0); // 상단에 추가
         var Row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
         var Cell0 = Row.insertCell(0);
@@ -250,11 +256,11 @@
         var Cell12 = Row.insertCell(12);
         var Cell13 = Row.insertCell(13);
 
-        Cell0.innerHTML = ' <td><input type="checkbox" class="list-check" name="ListSignupVOWis[${status.index}].btncheck" id="check" value="Y"/></td>';
-        Cell1.innerHTML = ' <td><input type="hidden" name="ListSignupVOWis[${status.index}].seq" value="${list.seq}"/></td>';
+        Cell0.innerHTML = ' <td><input type="checkbox" class="list-check" name="ListSignupVOWis['+parseInt(idx_List+1)+'].btncheck" id="check" value="Y"/></td>';
+        Cell1.innerHTML = idx_List+1;
         Cell2.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userId" value="${list.userId}"/></td></td>';
         Cell3.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userPw" value="${list.userPw}"/></td>';
-        Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion">] + ] <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >';
+        Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
         Cell5.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].pwAnswer" value="${list.pwAnswer}"/></td>';
         Cell6.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].nickname" value="${list.nickname}"/></td>';
         Cell7.innerHTML = ' <td> <select class="form-control" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber1"> <c:forEach var="map" items="${signupPhone}" varStatus="status2"> <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option></c:forEach></select><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" /><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" /></td>';
