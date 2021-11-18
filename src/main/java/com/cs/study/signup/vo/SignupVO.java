@@ -1,7 +1,13 @@
 package com.cs.study.signup.vo;
 
-import lombok.Data;
+import java.util.List;
+
+
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
+
+import lombok.Data;
 
 @Data
 @Alias("signupVO")
@@ -23,5 +29,9 @@ public class SignupVO {
     private String termsInfoYn;
     private String termsBuyYn;
     private String termsSellYn;
+    
+    private String checkFlag;
+    
+    private List<SignupVO> listSignupVO;
 }
 
