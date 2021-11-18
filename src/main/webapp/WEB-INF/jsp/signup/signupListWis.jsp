@@ -274,6 +274,7 @@
     function row_add() {
         var my_tbody = document.getElementById('my-tbody');
         var idx_List = document.getElementsByClassName('list-check').length-1;
+        var idx_seq = document.getElementsByClassName('list-check').length+1;
 
         // var row = my_tbody.insertRow(0); // 상단에 추가
         var Row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
@@ -294,7 +295,7 @@
 
         Cell0.innerHTML = ' <td><input type="checkbox" class="list-check" name="ListSignupVOWis['+parseInt(idx_List+1)+'].btncheck" id="check" value="Y"/></td>';
         <%--Cell1.innerHTML = '<c:out value="${status.count}"/>';--%>
-        Cell1.innerHTML = 'test';  //idx_List + 1;
+        Cell1.innerHTML = idx_seq//'test';  //idx_List + 1;
         Cell2.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userId" value="${list.userId}"/></td></td>';
         Cell3.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userPw" value="${list.userPw}"/></td>';
         Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
