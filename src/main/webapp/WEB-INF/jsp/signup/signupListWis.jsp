@@ -71,13 +71,15 @@
                         </div>
                         <div class="col-auto">
                             <button name="action" class="btn btn-info" type="submit">조회</button>
-                            <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">수정</button>
+                            <button id="btnSave" name="btnSave" value="update" type="button" class="btn btn-success">저장</button>
                             <button id="btnReset" name="btnReset" value="reset" type="button" class="btn btn-success" onclick="location.href='/signup/signupListWis'">초기화</button>
                                 <%--쓸꺼면 아래 온클릭 함수 살려     <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" onclick="vlaueChk()">체크</button> --%>
 <%--                            <button id="btncheck" name="btncheck" value="check" type="button" class="btn btn-success" >체크</button>--%>
                             <button id="btnDelete" name="btnDelete" value="delete" type="button" class="btn btn-success">삭제</button>
                             <button name="btnchange" id="btnchange" class="btn btn-info" type="submit">행열</button>
                             <button id="btnAdd" name="btnAdd" value="add" type="button" class="btn btn-success" onclick="row_add()" >Row추가</button>
+                            <button id="indexcheck" name="indexcheck" value="add" type="button" class="btn btn-success" onclick="get_chked_values()" >checkindex</button>
+                            <button id="checksave" name="checksave" value="checksave" type="button" class="btn btn-success">체크저장</button>
                         </div>
                         <div>
                         </div>
@@ -185,13 +187,22 @@
             //alert("안녕");
             $('#submitAction').val('update');
             $('#updatelist').submit();
-
         });
 
         $('#btnDelete').click(function(){
             //alert("안녕");
             $('#submitAction').val('delete');
             $('#updatelist').submit();
+            console.log('#submitAction');
+        });
+
+        $('#checksave').click(function(){
+            //alert("안녕");
+            get_chked_values();
+            // alert(idx);
+            $('#submitAction').val('checksave');
+            $('#updatelist').submit();
+            // alert("btn check");
             console.log('#submitAction');
         });
 
@@ -235,6 +246,31 @@
         }
     });
 
+    // function get_chked_values(){
+    //     var chked_val = "";
+    //     $(":checkbox[type='checkbox']:checked").each(function(pi,po){
+    //         chked_val += ","+po.value;
+    //     });
+    //     if(chked_val!="")chked_val = chked_val.substring(1);
+    //     alert(chked_val);
+    //     return chked_val;
+    // }
+
+
+
+    // 체크박스의 클릭이 된 값을 인덱스를 뽑아오는 코드
+    function get_chked_values() {
+        $("input:checkbox[id='check']").each(function () {
+            if (this.checked) {//checked 처리된 항목의 값
+                idx = $("input:checkbox[id='check']").index(this);
+                // alert(idx);
+            }
+        });
+    }
+
+// //    + 해당 객체 index로 같은 index의 객체의 값 가져오기
+//     alert($('input:hidden[name=u_nick]').eq(idx).val())
+
     function row_add() {
         var my_tbody = document.getElementById('my-tbody');
         var idx_List = document.getElementsByClassName('list-check').length-1;
@@ -257,19 +293,20 @@
         var Cell13 = Row.insertCell(13);
 
         Cell0.innerHTML = ' <td><input type="checkbox" class="list-check" name="ListSignupVOWis['+parseInt(idx_List+1)+'].btncheck" id="check" value="Y"/></td>';
-        Cell1.innerHTML = idx_List+1;
-        Cell2.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userId" value="${list.userId}"/></td></td>';
-        Cell3.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].userPw" value="${list.userPw}"/></td>';
-        Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis[${status.index}].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
-        Cell5.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].pwAnswer" value="${list.pwAnswer}"/></td>';
-        Cell6.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].nickname" value="${list.nickname}"/></td>';
-        Cell7.innerHTML = ' <td> <select class="form-control" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber1"> <c:forEach var="map" items="${signupPhone}" varStatus="status2"> <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option></c:forEach></select><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" /><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" /></td>';
-        Cell8.innerHTML = ' <td><td><c:forEach var="gd"  items="${signupGender}"  varStatus="status3"><input  type="radio" id="gender${status3.index }"name="ListSignupVOWis[${status.index}].gender" value="${gd.dtlCd }"<c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> ><label for="gender${status3.index }" >${gd.dtlNm }</label></c:forEach></td> </td>';
-        Cell9.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address1" value="${list.address1}"/></td>';
-        Cell10.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis[${status.index}].address2" value="${list.address2}"/></td>';
-        Cell11.innerHTML = ' <td> <input type="checkbox" name="ListSignupVOWis[${status.index}].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>> </td>';
-        Cell12.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis[${status.index}].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>> </td></td>';
-        Cell13.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis[${status.index}].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>> </td>';
+        <%--Cell1.innerHTML = '<c:out value="${status.count}"/>';--%>
+        Cell1.innerHTML = 'test';  //idx_List + 1;
+        Cell2.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userId" value="${list.userId}"/></td></td>';
+        Cell3.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userPw" value="${list.userPw}"/></td>';
+        Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
+        Cell5.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwAnswer" value="${list.pwAnswer}"/></td>';
+        Cell6.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].nickname" value="${list.nickname}"/></td>';
+        Cell7.innerHTML = ' <td> <select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].phoneNumber1"> <c:forEach var="map" items="${signupPhone}" varStatus="status2"> <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option></c:forEach></select><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" /><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" /></td>';
+        Cell8.innerHTML = ' <c:forEach var="gd"  items="${signupGender}"  varStatus="status3"><input  type="radio" id="gender${status3.index }"name="ListSignupVOWis['+parseInt(idx_List+1)+'${status.index}].gender" value="${gd.dtlCd }"<c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> ><label for="gender${status3.index }" >${gd.dtlNm }</label></c:forEach></td> </td>';
+        Cell9.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address1" value="${list.address1}"/></td>';
+        Cell10.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address2" value="${list.address2}"/></td>';
+        Cell11.innerHTML = ' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>> </td>';
+        Cell12.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>> </td></td>';
+        Cell13.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>> </td>';
 
     }
 
@@ -294,6 +331,13 @@
 
         return false;
     });
+
+
+    // 만들어진 로우 에어 체크박스에 체크된것을 체크하고 btnsave를 클릭하게 되면 그 로우가 데이터 저장이 되게 하기.
+    // 왼쪽 체크박스에서 체크박스클릭과 클릭되지않은 배열을 갖고오던 체크를 비교 불린을 해서 인덱스번호를 뽑아와서  // 인덱스 번호 출력 확인 완료
+    // 그 인덱스번호를 업데이트 치자
+
+
 
 
 </script>

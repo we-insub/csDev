@@ -36,6 +36,6 @@ public class SampleService{
     }
 
     public int deleteSample(SampleVO sampleVO) {
-        return syncSampleMapper.deleteSample(sampleVO);
+            return syncSampleMapper.deleteSample(sampleVO);
     }
 }

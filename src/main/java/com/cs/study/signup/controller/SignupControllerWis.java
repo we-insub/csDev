@@ -171,6 +171,14 @@ public class SignupControllerWis {
                 }
             }
         }
+//        else if ("checksave".equals(action)){
+//            List<SignupVOWis> signupListwis = signupServiceWis.signupListwis(signupVOWis);
+//                model.addAttribute("signupVOWis", signupVOWis);
+//
+//
+//                //return "/signup/signupWis";
+//        } // 날릴꺼면여기까지주석임
             return "redirect:/signup/signupListWis";
     }
 }
+
