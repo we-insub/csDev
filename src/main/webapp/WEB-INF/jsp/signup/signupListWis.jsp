@@ -263,7 +263,8 @@
         $("input:checkbox[id='check']").each(function () {
             if (this.checked) {//checked 처리된 항목의 값
                 idx = $("input:checkbox[id='check']").index(this);
-                // alert(idx);
+                alert(idx);
+                console.log(idx);
             }
         });
     }
@@ -276,38 +277,41 @@
         var idx_List = document.getElementsByClassName('list-check').length-1;
         var idx_seq = document.getElementsByClassName('list-check').length+1;
 
-        // var row = my_tbody.insertRow(0); // 상단에 추가
-        var Row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
-        var Cell0 = Row.insertCell(0);
-        var Cell1 = Row.insertCell(1);
-        var Cell2 = Row.insertCell(2);
-        var Cell3 = Row.insertCell(3);
-        var Cell4 = Row.insertCell(4);
-        var Cell5 = Row.insertCell(5);
-        var Cell6 = Row.insertCell(6);
-        var Cell7 = Row.insertCell(7);
-        var Cell8 = Row.insertCell(8);
-        var Cell9 = Row.insertCell(9);
-        var Cell10 = Row.insertCell(10);
-        var Cell11 = Row.insertCell(11);
-        var Cell12 = Row.insertCell(12);
-        var Cell13 = Row.insertCell(13);
 
-        Cell0.innerHTML = ' <td><input type="checkbox" class="list-check" name="ListSignupVOWis['+parseInt(idx_List+1)+'].btncheck" id="check" value="Y"/></td>';
+        // var row = my_tbody.insertRow(0); // 상단에 추가
+        const Row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
+        const Cell0 = Row.insertCell(0);
+        const Cell1 = Row.insertCell(1);
+        const Cell2 = Row.insertCell(2);
+        const Cell3 = Row.insertCell(3);
+        const Cell4 = Row.insertCell(4);
+        const Cell5 = Row.insertCell(5);
+        const Cell6 = Row.insertCell(6);
+        const Cell7 = Row.insertCell(7);
+        const Cell8 = Row.insertCell(8);
+        const Cell9 = Row.insertCell(9);
+        const Cell10 = Row.insertCell(10);
+        const Cell11 = Row.insertCell(11);
+        const Cell12 = Row.insertCell(12);
+        const Cell13 = Row.insertCell(13);
+
+        // let babo =("이민규");
+
+        Cell0.innerHTML = '<input type="checkbox" class="list-check" name="ListSignupVOWis['+parseInt(idx_List+1)+'].btncheck" id="check" value="Y"/></>';
         <%--Cell1.innerHTML = '<c:out value="${status.count}"/>';--%>
         Cell1.innerHTML = idx_seq//'test';  //idx_List + 1;
-        Cell2.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userId" value="${list.userId}"/></td></td>';
-        Cell3.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userPw" value="${list.userPw}"/></td>';
-        Cell4.innerHTML = ' <td><select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
-        Cell5.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwAnswer" value="${list.pwAnswer}"/></td>';
-        Cell6.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].nickname" value="${list.nickname}"/></td>';
-        Cell7.innerHTML = ' <td> <select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].phoneNumber1"> <c:forEach var="map" items="${signupPhone}" varStatus="status2"> <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option></c:forEach></select><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" /><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" /></td>';
-        Cell8.innerHTML = ' <c:forEach var="gd"  items="${signupGender}"  varStatus="status3"><input  type="radio" id="gender${status3.index }"name="ListSignupVOWis['+parseInt(idx_List+1)+'${status.index}].gender" value="${gd.dtlCd }"<c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> ><label for="gender${status3.index }" >${gd.dtlNm }</label></c:forEach></td> </td>';
-        Cell9.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address1" value="${list.address1}"/></td>';
-        Cell10.innerHTML = ' <td><input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address2" value="${list.address2}"/></td>';
-        Cell11.innerHTML = ' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>> </td>';
-        Cell12.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>> </td></td>';
-        Cell13.innerHTML =' <td> <input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>> </td>';
+        Cell2.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userId" value="${list.userId}"/>';
+        Cell3.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].userPw" value="${list.userPw}"/>';
+        Cell4.innerHTML = '<select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwQuestion"><c:forEach var="map" items="${signupPwAnswer}" varStatus="status2"> <option value="${map.dtlCd}"<c:if test="${list.pwQuestion eq  map.dtlCd}" >selected="selected"</c:if>  >${map.dtlNm}</option></c:forEach> </select>';
+        Cell5.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].pwAnswer" value="${list.pwAnswer}"/>';
+        Cell6.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].nickname" value="${list.nickname}"/>';
+        Cell7.innerHTML = '<select class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].phoneNumber1"> <c:forEach var="map" items="${signupPhone}" varStatus="status2"> <option value="${map.dtlCd}" <c:if test="${list.phoneNumber1 eq map.dtlCd}">selected="selected"</c:if> >${map.dtlNm}</option></c:forEach></select><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber2" value="${list.phoneNumber2}" /><input type="text" name="ListSignupVOWis[<c:out value="${status.index}" />].phoneNumber3" value="${list.phoneNumber3}" />';
+        Cell8.innerHTML = '<c:forEach var="gd"  items="${signupGender}"  varStatus="status3"><input  type="radio" id="gender${status3.index }"name="ListSignupVOWis['+parseInt(idx_List+1)+'${status.index}].gender" value="${gd.dtlCd }"<c:if test="${list.gender eq gd.dtlCd }">checked="checked"</c:if> ><label for="gender${status3.index }" >${gd.dtlNm }</label></c:forEach>';
+        Cell9.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address1" value="${list.address1}"/>';
+        Cell10.innerHTML = '<input type="text" class="form-control" name="ListSignupVOWis['+parseInt(idx_List+1)+'].address2" value="${list.address2}"/>';
+        Cell11.innerHTML = '<input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsInfoYn" value="Y" <c:if test="${list.termsInfoYn eq 'Y'}"> checked="checked"</c:if>>';
+        Cell12.innerHTML ='<input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsBuyYn" value="Y" <c:if test="${list.termsBuyYn eq 'Y'}"> checked="checked"</c:if>>';
+        Cell13.innerHTML ='<input type="checkbox" name="ListSignupVOWis['+parseInt(idx_List+1)+'].termsSellYn" value="Y" <c:if test="${list.termsSellYn eq 'Y'}"> checked="checked"</c:if>>';
 
     }
 
